@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorixona - Biz Haqimizda</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f9f4;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .navbar:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .brand {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #28a745;
+            transition: color 0.3s ease;
+        }
+
+        .brand:hover {
+            color: #218838;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #28a745;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .about-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-content h2 {
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .about-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        .about-content li {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                position: static;
+                width: 100%;
+                background-color: #ffffff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+
+            .nav-links li {
+                margin: 0;
+                padding: 10px 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">DORIXONA</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Bosh Sahifa</a></li>
+            <li><a href="">Biz Haqimizda</a></li>
+            <li><a href="{% url 'contact' %}">Bog'lanish</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <div class="about-content">
+            <h2>Biz Haqimizda</h2>
+            <p>
+                Bizning dorixonamiz mijozlarga yuqori sifatli dori-darmonlar va tibbiy xizmatlarni taqdim etishga intiladi. Bizning maqsadimiz - har bir mijozning sog'lig'ini yaxshilash va ularga ishonchli xizmat ko'rsatish.
+            </p>
+            <p>
+                Bizning jamoamiz tajribali farmatsevtlardan iborat bo'lib, ular sizga kerakli dori-darmonlarni tanlashda va ulardan to'g'ri foydalanishda yordam berishga tayyor. Biz doimo mijozlarimizning ehtiyojlarini qondirishga harakat qilamiz va ularning sog'lig'i uchun qayg'uramiz.
+            </p>
+
+            <h3>Bizning Afzalliklarimiz:</h3>
+            <ul>
+                <li>Keng assortimentdagi dori-darmonlar</li>
+                <li>Tajribali farmatsevtlarning maslahatlari</li>
+                <li>Qulay narxlar va chegirmalar</li>
+                <li>Tezkor yetkazib berish xizmati</li>
+                <li>Mijozlarga individual yondashuv</li>
+            </ul>
+
+            <h3>Bizning Xizmatlarimiz:</h3>
+            <ul>
+                <li>Dori-darmonlarni sotish</li>
+                <li>Tibbiy maslahatlar berish</li>
+                <li>Online buyurtma qabul qilish</li>
+                <li>Yetkazib berish xizmati</li>
+                <li>Vitaminlar va sog'liqni saqlash mahsulotlari</li>
+            </ul>
+
+            <p>
+                Bizning dorixonamizga tashrif buyuring va sog'lig'ingiz haqida qayg'urishda bizga ishoning!
+            </p>
+        </div>
+    </div>
+</body>
+</html>

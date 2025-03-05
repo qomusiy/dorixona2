@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorixona - {{ pill.title }}</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f9f4;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .navbar:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .brand {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #28a745;
+            transition: color 0.3s ease;
+        }
+
+        .brand:hover {
+            color: #218838;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #28a745;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .pill-detail {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .pill-image {
+            flex: 1 1 200px; /* Kichikroq o'lcham */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .pill-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .pill-info {
+            flex: 1 1 500px;
+            padding-left: 20px;
+        }
+
+        .pill-info h2 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .pill-info p {
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .pill-info strong {
+            font-weight: bold; /* O'zgarmagan matnni ajratish */
+        }
+
+        .pill-info .price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .buy-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .buy-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .related-pills {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .related-pills h3 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .related-pills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .related-pill {
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 150px;
+        }
+
+        .related-pill img {
+            max-width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 5px;
+        }
+        .back-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-button a {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-button a:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                position: static;
+                width: 100%;
+                background-color: #ffffff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+
+            .nav-links li {
+                margin: 0;
+                padding: 10px 20px;
+                text-align: center;
+            }
+
+            .pill-detail {
+                flex-direction: column;
+            }
+
+            .pill-info {
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">DORIXONA</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Bosh Sahifa</a></li>
+            <li><a href="{% url 'about' %}">Biz Haqimizda</a></li>
+            <li><a href="{% url 'contact' %}">Bog'lanish</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <div class="pill-detail">
+            <div class="pill-image">
+                <img src="{{ pill.image.url }}" alt="{{ pill.title }}">
+            </div>
+            <div class="pill-info">
+                <h2>{{ pill.title }}</h2>
+                <p><strong>Ishlab chiqaruvchi:</strong> {{ pill.maker }}</p>
+                <p><strong>Ishlab chiqarilgan mamlakat:</strong> {{ pill.made_in }}</p>
+                <p><strong>Qo'llanilishi:</strong> {{ pill.for_what }}</p>
+                <p><strong>Qo'llash usuli:</strong> {{ pill.use_instruction }}</p>
+                <p><strong>Ishlab chiqarilgan sana:</strong> {{ pill.made_date }}</p>
+                <p><strong>Yaroqlilik muddati:</strong> {{ pill.expiration_date }}</p>
+                <div class="price">{{ pill.price }} so'm</div>
+                <button class="buy-btn">Sotib olish</button>
+            </div>
+            <!-- <div class="back-button">
+                <a href="{% url 'home' %}">Orqaga qaytish</a>
+            </div> -->
+        </div>
+    </div>
+</body>
+</html>

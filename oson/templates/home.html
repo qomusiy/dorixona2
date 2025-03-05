@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorixona</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f9f4;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease; /* Navbar shadow transition */
+        }
+
+        .navbar:hover{
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .brand {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #28a745;
+            transition: color 0.3s ease; /* Brand color transition */
+        }
+
+        .brand:hover{
+            color: #218838;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease; /* Nav link color transition */
+        }
+
+        .nav-links a:hover {
+            color: #28a745;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            padding: 0 20px;
+        }
+
+        .search-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+            transition: border-color 0.3s ease; /* Search input border transition */
+        }
+
+        .search-input:focus {
+            border-color: #28a745;
+        }
+
+        .see-all-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Button transition */
+        }
+
+        .see-all-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .pill {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Pill transition */
+        }
+
+        .pill:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .pill img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .pill h3 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .pill p {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .pill .price {
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .buy-btn, .more-info-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Button transition */
+            margin: 5px;
+        }
+
+        .buy-btn:hover, .more-info-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                position: static;
+                width: 100%;
+                background-color: #ffffff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+
+            .nav-links li {
+                margin: 0;
+                padding: 10px 20px;
+                text-align: center;
+            }
+
+            .search-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-input{
+                margin-right: 0px;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">DORIXONA</div>
+        <ul class="nav-links">
+            <li><a href="">Bosh Sahifa</a></li>
+            <li><a href="{% url 'about' %}">Biz Haqimizda</a></li>
+            <li><a href="{% url 'contact' %}">Bog'lanish</a></li>
+        </ul>
+    </nav>
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Dori qidiring...">
+        <button class="see-all-btn">Izlash</button>
+    </div>
+
+    <div class="content">
+        {% for p in pill %}
+        <div class="pill">
+            <a href="{% url 'infopill' p.id %}">
+            <img src="{{ p.image.url }}" alt="Dori rasmi chiqmadi">
+            </a>
+            <h3>{{ p.title }}</h3>
+            <p>{{ p.for_what }}</p>
+            <div class="price">{{ p.price }} so'm</div>
+            <button class="buy-btn">Sotib olish</button>
+            <!-- <button class="more-info-btn">
+                <a href="{% url 'infopill' p.id %}">Batafsil</a>
+            </button> -->
+        </div>
+        {% endfor %}
+        
+    </div>
+</body>
+</html>
