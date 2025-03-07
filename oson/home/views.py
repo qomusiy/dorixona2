@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Pills
-from django.views import View
+from django.views.generic import View, UpdateView, DeleteView
+from .forms import PillForm
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -31,3 +33,32 @@ class About(View):
 class Contact(View):
     def get(self, request):
         return render(request, template_name='contact.html')
+    
+
+class Addpill(View):
+    def get(self, r):
+        return render(r, template_name='addpill.html', context={'form':PillForm()})
+    
+    def post(self, r):
+        form = PillForm(r.POST, r.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        return render(r, template_name='addpill.html', context={'form':form})
+    
+
+class Editpill(UpdateView):
+    model = Pills
+    template_name = 'edit.html'
+    form_class = PillForm
+    context_object_name = 'pill'
+
+    def get_success_url(self):
+        return reverse_lazy('infopill', kwargs={'pk': self.object.pk})
+    
+
+class Deletepill(DeleteView):
+    model = Pills
+    success_url = reverse_lazy('home')
+    template_name = 'delete.html'
+    context_object_name = 'pill'
